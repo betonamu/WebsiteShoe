@@ -1,0 +1,33 @@
+﻿@model WebsiteShoe.Entities.ShoeStyle;
+@{
+    ViewData["Title"] = "EditShoeStyle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center mb-2">
+    <h3>SỬA LOẠI SẢN PHẨM</h3>
+</div>
+<div class="container">
+    <form enctype="multipart/form-data" action="/Admin/EditShoeStyle/" method="post">
+        <input name="StyleId" type="hidden" value="@Model.StyleId" />
+        <div class="form-group row justify-content-center">
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Loai giay</label>
+            <div class="col-sm-4">
+                <input type="text" name="StyleName" class="form-control form-control-sm" id="colFormLabelSm" value="@Model.StyleName">
+                <span asp-validation-for="StyleName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row justify-content-center">
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Loại giày</label>
+            <div class="col-sm-4">
+                <select id="slbShoeStyle" name="ProducerId" asp-for="ProducerId" class="form-control" asp-items="@ViewBag.Producer">
+                    <option value="">---Chọn loại sản phẩm---</option>
+                </select>
+                <span asp-validation-for="StyleId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <input type="submit" value="Lưu" class="btn btn-success">
+        </div>
+    </form>
+</div>

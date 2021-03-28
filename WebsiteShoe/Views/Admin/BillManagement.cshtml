@@ -1,0 +1,68 @@
+﻿@model List<WebsiteShoe.Entities.Bill>
+@{
+    ViewData["Title"] = "BillManagement";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Quản lý đơn đặt hàng</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Bảng đơn đặt hàng</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Tên khác hàng</th>
+                            <th>Địa chỉ</th>
+                            <th>Số điện thoại</th>
+                            <th>Ngày mua</th>
+                            <th>Tổng tiền</th>
+                            <th>Sửa</th>
+                        </tr>
+                    </thead>
+                    @if (Model.Count(a=>a.BillDetails != null) != 0)
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@item.BillId</td>
+                                    <td>@item.Customer.DisplayName</td>
+                                    <td>@item.Customer.Address</td>
+                                    <td>@item.Customer.PhoneNumber</td>
+                                    <td>@item.CreateAt</td>
+                                    <td>@item.BillDetails.FirstOrDefault().TotalPrice</td>
+                                    <td>
+                                        <a class="btn btn-danger" href="/Admin/Edit">Edit</a>
+                                        <a class="btn btn-danger" href="/Admin/DeleteBill/@item.BillId">Delete</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+                    }
+                    else
+                    {
+                        <tbody>
+                            <tr  class="justify-content-center">
+                                <td colspan="7">
+                                    <h2 class="text-danger">Hiện tại không có dữ liệu về các đơn hàng</h2>
+                                </td>
+                            </tr>
+                        </tbody>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->

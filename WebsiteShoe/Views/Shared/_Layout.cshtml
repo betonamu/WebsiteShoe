@@ -1,0 +1,292 @@
+﻿@using WebsiteShoe.Helper; 
+@using WebsiteShoe.Entities; 
+@using Microsoft.AspNetCore.Http;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="keywords" content="Default Description">
+    <meta name="description" content="Default keyword">
+    <title>@ViewData["Title"] - WebsiteShoe</title>
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow:300,400,700%7CMontserrat:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="~/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/plugins/ps-icon/style.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/css/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/plugins/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/plugins/owl-carousel/assets/owl.carousel.css">
+    <link rel="stylesheet" href="~/plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css">
+    <link rel="stylesheet" href="~/plugins/slick/slick/slick.css">
+    <link rel="stylesheet" href="~/plugins/bootstrap-select/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="~/plugins/Magnific-Popup/dist/magnific-popup.css">
+    <link rel="stylesheet" href="~/plugins/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="~/plugins/revolution/css/settings.css">
+    <link rel="stylesheet" href="~/plugins/revolution/css/layers.css">
+    <link rel="stylesheet" href="~/plugins/revolution/css/navigation.css">
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body class="ps-loading">
+    <div class="header--sidebar"></div>
+    <header class="header">
+        <div class="header__top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 col-sm-6 col-xs-12 ">
+                        <p>475 A Điện Biên Phủ, Phường 25, Bình Thạnh, Hồ Chí Minh - Hotline: 036-696-2361</p>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12 ">
+                        <div class="header__actions">
+                            @if (Context.Session.GetString("username") != null)
+                            {
+                                <div class="btn-group ps-dropdown">
+                                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Context.Session.GetString("username")<i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/Admin/">Admin</a></li>
+                                        <li><a href="#"><img src="images/flag/singapore.svg" alt=""> SGD</a></li>
+                                        <li><a href="/Auth/LogOut">Đăng xuất</a></li>
+                                    </ul>
+                                </div>
+                            }
+                            else
+                            {
+                                <a href="/SignIn">Đăng Ký</a>
+                                <a href="/Login">Đăng nhập</a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navigation">
+            <div class="container-fluid">
+                <div class="navigation__column left">
+                    <div class="header__logo"><a class="ps-logo" asp-controller="Home" asp-action="Index"><img src="~/images/logo-xp.png" alt="" height="100" width="100"></a></div>
+                </div>
+                <div class="navigation__column center">
+                    <ul class="main-menu menu">
+                        <li class="menu-item menu-item-has-children dropdown">
+                            <a asp-action="Index" asp-controller="Home">Trang chủ</a>
+                        </li>
+                        <li class="menu-item menu-item-has-children has-mega-menu">
+                            <a asp-action="ProductIndex" asp-controller="Product">Giày nè</a>
+                            <div class="mega-menu">
+                                <div class="mega-wrap">
+                                    @await Component.InvokeAsync("NikeStyle")
+                                    @await Component.InvokeAsync("AdidasStyle")
+                                </div>
+                            </div>
+                        </li>
+                        <li class="menu-item"><a href="/Home/Size/">Hướng dẫn chọn Size</a></li>
+                        <li class="menu-item menu-item-has-children dropdown">
+                            <a href="/Blog/Index/">Tin tức</a>
+                        </li>
+                        <li class="menu-item menu-item-has-children dropdown">
+                            <a href="/Home/Contact/">Liên hệ</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation__column right">
+
+                    <form class="ps-search--header" action="do_action" method="post">
+                        <input class="form-control" id="search" onkeyup="Search()" type="text" placeholder="Tìm sản phẩm">
+                        <p id="search1"></p>
+                    </form>
+
+                    @await Component.InvokeAsync("CartIndex")
+
+                    <div class="menu-toggle"><span></span></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="header-services">
+        <div class="ps-services owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="7000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="false" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
+            <p class="ps-service"><i class="ps-icon-delivery"></i><strong>Free delivery</strong>: Get free standard delivery on every order with Shoe Store</p>
+            <p class="ps-service"><i class="ps-icon-delivery"></i><strong>Free delivery</strong>: Get free standard delivery on every order with Shoe Store</p>
+            <p class="ps-service"><i class="ps-icon-delivery"></i><strong>Free delivery</strong>: Get free standard delivery on every order with Shoe Store</p>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <main role="main" class="pb-3 ps-main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <main class="ps-main">
+        <div class="ps-home-partner">
+            <div class="ps-container">
+                <div class="owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="40" data-owl-nav="false" data-owl-dots="false" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="4" data-owl-item-md="5" data-owl-item-lg="6"
+                     data-owl-duration="1000" data-owl-mousedrag="on">
+                    <a href="#"><img src="images/partner/1.png" alt=""></a><a href="#"><img src="images/partner/2.png" alt=""></a><a href="#"><img src="images/partner/3.png" alt=""></a><a href="#"><img src="images/partner/4.png" alt=""></a><a href="#"><img src="images/partner/5.png" alt=""></a>
+                    <a href="#"><img src="images/partner/6.png" alt=""></a><a href="#"><img src="images/partner/7.png" alt=""></a><a href="#"><img src="images/partner/8.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="ps-footer bg--cover" data-background="images/background/parallax.jpg">
+            <div class="ps-footer__content">
+                <div class="ps-container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 ">
+                            <aside class="ps-widget--footer ps-widget--info">
+                                <header>
+                                    <a class="ps-logo" href="/Home/Index"><img src="images/logo-white-xp.png" alt=""></a>
+                                    <h3 class="ps-widget__title">TRụ sở A</h3>
+                                </header>
+                                <footer>
+                                    <p>
+                                        <strong>
+                                            475 A Điện Biên Phủ, Phường 25, Bình Thạnh, Hồ Chí Minh
+                                        </strong>
+                                    </p>
+                                    <p>Email: <a href='mailto:trandangkhoa19121999@gmail.com'>trandangkhoa19121999@gmail.com</a></p>
+                                    <p>Phone: +84 366962361</p>
+                                </footer>
+                            </aside>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 ">
+                            <aside class="ps-widget--footer ps-widget--info second">
+                                <header>
+                                    <h3 class="ps-widget__title">trụ sở D</h3>
+                                </header>
+                                <footer>
+                                    <p><strong>PO Box 16122 Collins  Victoria 3000 Australia</strong></p>
+                                    <p>Email: <a href='mailto:trandangkhoa19121999@gmail.com'>trandangkhoa19121999@gmail.com</a></p>
+                                    <p>Phone: +84 366962361</p>
+                                </footer>
+                            </aside>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 ">
+                            <aside class="ps-widget--footer ps-widget--link">
+                                <header>
+                                    <h3 class="ps-widget__title">Find Our store</h3>
+                                </header>
+                                <footer>
+                                    <ul class="ps-list--link">
+                                        <li><a href="#">Coupon Code</a></li>
+                                        <li><a href="#">SignUp For Email</a></li>
+                                        <li><a href="#">Site Feedback</a></li>
+                                        <li><a href="#">Careers</a></li>
+                                    </ul>
+                                </footer>
+                            </aside>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 ">
+                            <aside class="ps-widget--footer ps-widget--link">
+                                <header>
+                                    <h3 class="ps-widget__title">Get Help</h3>
+                                </header>
+                                <footer>
+                                    <ul class="ps-list--line">
+                                        <li><a href="#">Order Status</a></li>
+                                        <li><a href="#">Shipping and Delivery</a></li>
+                                        <li><a href="#">Returns</a></li>
+                                        <li><a href="#">Payment Options</a></li>
+                                        <li><a href="#">Contact Us</a></li>
+                                    </ul>
+                                </footer>
+                            </aside>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 ">
+                            <aside class="ps-widget--footer ps-widget--link">
+                                <header>
+                                    <h3 class="ps-widget__title">Products</h3>
+                                </header>
+                                <footer>
+                                    <ul class="ps-list--line">
+                                        <li><a href="#">Shoes</a></li>
+                                        <li><a href="#">Clothing</a></li>
+                                        <li><a href="#">Accessries</a></li>
+                                        <li><a href="#">Football Boots</a></li>
+                                    </ul>
+                                </footer>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ps-footer__copyright">
+                <div class="ps-container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                            <p>&copy; <a href="#">NOUTHEMES</a>, Inc. All rights Resevered. Design by <a href="#"> Alena Studio</a></p>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                            <ul class="ps-social">
+                                <li><a href="https://www.facebook.com/Nguyen.Cong.Quoc16" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-comments"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v7.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Your Chat Plugin code -->
+    <div class="fb-customerchat"
+         attribution=setup_tool
+         page_id="107197084381579"
+         theme_color="#ff5ca1"
+         logged_in_greeting="Hello cả nhà yêu của kem!!!"
+         logged_out_greeting="Hello cả nhà yêu của kem!!!">
+    </div>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/plugins/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/plugins/jquery-bar-rating/dist/jquery.barrating.min.js"></script>
+    <script type="text/javascript" src="~/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="~/plugins/gmap3.min.js"></script>
+    <script type="text/javascript" src="~/plugins/imagesloaded.pkgd.js"></script>
+    <script type="text/javascript" src="~/plugins/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="~/plugins/jquery.matchHeight-min.js"></script>
+    <script type="text/javascript" src="~/plugins/slick/slick/slick.min.js"></script>
+    <script type="text/javascript" src="~/plugins/elevatezoom/jquery.elevatezoom.js"></script>
+    <script type="text/javascript" src="~/plugins/Magnific-Popup/dist/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="~/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIy8l8gSJaMoUvCZJv8AyCAw3CU07nCKs&amp;region=GB"></script>
+    <script type="text/javascript" src="~/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="~/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="~/plugins/revolution/js/extensions/revolution.extension.video.min.js"></script>
+    <script type="text/javascript" src="~/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="~/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="~/plugins/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="~/plugins/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script type="text/javascript" src="~/plugins/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+    <script type="text/javascript" src="~/plugins/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script type="text/javascript" src="~/plugins/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+    <script src="https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/2/js-cloudimage-360-view.min.js"></script>
+    <script src="~/js/js/main.js"></script>
+    <script src="~/js/_layout.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

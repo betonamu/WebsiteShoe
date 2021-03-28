@@ -1,0 +1,60 @@
+﻿@model WebsiteShoe.Entities.Shoe
+
+@{
+    ViewData["Title"] = "Xóa giày";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <h1>Xóa Giày</h1>
+</div>
+<div class="row justify-content-center">
+    <h3>Bạn có thật sự muốn xóa?</h3>
+</div>
+<div>
+    <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ShoeId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ShoeId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ShoeName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ShoeName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.StyleId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.StyleId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Images)
+            </dt>
+            <dd class="col-sm-10">
+                <img src="@Url.Content(Model.Images)" class="img-fluid" height="100" width="100" />
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Image360)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Image360)
+            </dd>
+        </dl>
+    <div class="row justify-content-center">
+        <form action="/Admin/DeleteShoeConfirm/@Model.ShoeId" method="post">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="ShoeManagement" asp-controller="Admin">Quay lại</a>
+        </form>
+    </div>
+</div>

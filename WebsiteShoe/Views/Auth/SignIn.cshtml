@@ -1,0 +1,82 @@
+﻿@model WebsiteShoe.Models.RegisterModel
+
+@{
+    ViewData["Title"] = "SignIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <h1>Đăng Ký</h1>
+</div>
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="SignIn">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DisplayName" class="control-label"></label>
+                <input asp-for="DisplayName" class="form-control" required />
+                <span asp-validation-for="DisplayName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" class="form-control" required />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" type="text" id="username" class="form-control" onkeyup="checkUsernameExists()" required />
+                <span asp-validation-for="UserName" id="username_message"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" type="password" id="password" class="form-control" onkeyup="checkPassword()" required />
+                <span asp-validation-for="Password" id="message_password"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label"></label>
+                <input asp-for="ConfirmPassword" type="password" id="confirm_password" class="form-control" onkeyup="checkConfirmPassword()" required />
+                <span asp-validation-for="ConfirmPassword" id="message"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" type="email" id="email" class="form-control" required />
+                <span asp-validation-for="Email" id="email_message"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" required />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" required />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="Sex" name="Sex" id="Nam" value="True" checked>
+                    <label class="form-check-label ml-4" for="Nam">
+                        Nam
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="Sex" name="Sex" id="Nu" value="False">
+                    <label class="form-check-label ml-4" for="Nu">
+                        Nữ
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group row justify-content-center">
+                <input type="submit" id="submit" value="Đăng Ký" class="btn btn-primary mt-5" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row justify-content-center mt-3">
+    <a asp-action="Login" asp-controller="Auth">Quay về Đăng nhập</a>
+</div>
+
+<script src="~/js/SignIn.js"></script>

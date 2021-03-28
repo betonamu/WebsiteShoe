@@ -1,0 +1,6 @@
+﻿@model List<WebsiteShoe.Models.ShoeStyle>
+@foreach (var item in Model)
+{
+    <li><a href="/Product/@item.ProducerName/@item.StyleName">@item.StyleName<span>(@item.Quantity)</span></a></li>
+}
+

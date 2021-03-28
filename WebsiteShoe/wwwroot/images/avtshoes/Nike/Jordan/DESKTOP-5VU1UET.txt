@@ -1,0 +1,23 @@
+x1 1l
+x10 7l
+x20 8l
+x40 7l 
+x80 5l
+
+
+
+12/6 2h
+
+{"shoeId":65,"shoeName":"Air Max 90 Off-White Black","styleId":2,"images":"~/images/avtshoes/nike/airmax/AirMax90OffWhiteBlack.png","price":15000000,"image360":"~/images/360shoes/AirMax90OffWhiteBlack/","shoeStyle":null,"billDetails":null,"shoeDetails":null}
+
+
+
+(int)a
+
+
+
+select distinct Z.EXP from 在庫管理テーブル as Z inner join (select distinct HIN_CD,LOT_CD from 出荷判定状態テーブル where AUTO_NUM in (select max(HD1.AUTO_NUM) from 出荷判定状態テーブル as HD1 inner join (select HIN_CD,LOT_CD,EXP,max(REC_UPDATE) as REC_UPDATE from 出荷判定状態テーブル group by HIN_CD,LOT_CD,EXP ) as HD2 on HD1.REC_UPDATE=HD2.REC_UPDATE and HD1.HIN_CD=HD2.HIN_CD and HD1.LOT_CD=HD2.LOT_CD and (HD1.EXP=HD2.EXP or (HD1.EXP is null and HD2.EXP is null)) group by HD1.HIN_CD,HD1.LOT_CD,HD1.EXP) and MD_HANTEI is not null) as HD on Z.HIN_CD=HD.HIN_CD and Z.LOT_CD=HD.LOT_CD where Z.HIN_CD='ARFFLU110_03' and Z.LOT_CD='AB101AA1006' order by Z.EXP
+
+
+
+zfrqhdxvqopmgmru : passend mail

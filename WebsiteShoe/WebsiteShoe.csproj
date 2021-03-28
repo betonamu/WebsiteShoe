@@ -1,0 +1,71 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <UserSecretsId>56d48288-e715-415e-a25b-ec6dc7f07484</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="2.7.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\plugins\revolution\assets\svg\" />
+    <Folder Include="wwwroot\plugins\revolution\fonts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Migrations\20200608162115_AddShoeSize - Copy %282%29 - Copy.Designer.cs">
+      <DependentUpon>20200608162115_AddShoeSize - Copy (2) - Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\20200608162115_AddShoeSize - Copy %282%29.Designer.cs">
+      <DependentUpon>20200608162115_AddShoeSize - Copy (2).cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\20200608162115_AddShoeSize - Copy %283%29.Designer.cs">
+      <DependentUpon>20200608162115_AddShoeSize - Copy (3).cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\20200608162115_AddShoeSize - Copy - Copy %282%29.Designer.cs">
+      <DependentUpon>20200608162115_AddShoeSize - Copy - Copy (2).cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\20200608162115_AddShoeSize - Copy - Copy - Copy.Designer.cs">
+      <DependentUpon>20200608162115_AddShoeSize - Copy - Copy - Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\20200608162115_AddShoeSize - Copy - Copy.Designer.cs">
+      <DependentUpon>20200608162115_AddShoeSize - Copy - Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\20200608162115_AddShoeSize - Copy.Designer.cs">
+      <DependentUpon>20200608162115_AddShoeSize - Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\20200608162429_AddShoeSize1 - Copy - Copy %282%29.Designer.cs">
+      <DependentUpon>20200608162429_AddShoeSize1 - Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\20200608162429_AddShoeSize1 - Copy - Copy - Copy.Designer.cs">
+      <DependentUpon>20200608162429_AddShoeSize1 - Copy - Copy (2).cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\20200608162429_AddShoeSize1 - Copy - Copy.Designer.cs">
+      <DependentUpon>20200608162429_AddShoeSize1 - Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\20200608162429_AddShoeSize1 - Copy.Designer.cs">
+      <DependentUpon>20200608162429_AddShoeSize1 - Copy.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\images\avtshoes\Nike\Collab\ConverseOffWhiteTheTen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

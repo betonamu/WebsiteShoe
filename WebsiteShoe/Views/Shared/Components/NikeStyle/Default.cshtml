@@ -1,0 +1,11 @@
+﻿@model List<WebsiteShoe.Models.ShoeStyleHeader>
+<div class="mega-column">
+    <h4 class="mega-heading">Nike</h4>
+    <ul class="mega-item">
+        <li><a href="/Product/Nike">Tất cả</a></li>
+        @foreach (var item in Model)
+        {
+            <li><a href="/Product/Nike/@item.StyleName">@item.StyleName</a></li>
+        }
+    </ul>
+</div>

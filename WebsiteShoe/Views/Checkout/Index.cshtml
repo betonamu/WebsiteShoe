@@ -1,0 +1,120 @@
+﻿@model WebsiteShoe.Entities.Bill
+@{
+    ViewData["Title"] = "Thanh toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="ps-main">
+    <div class="ps-checkout pt-80 pb-80">
+        <div class="ps-container">
+            <form class="ps-checkout__form" action="/Checkout/Order/" method="post">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                        <div class="ps-checkout__billing">
+                            <h3>THÔNG TIN ĐƠN HÀNG</h3>
+                            <div class="form-group form-group--inline">
+                                <label>
+                                    Họ và tên<span>*</span>
+                                </label>
+                                <input class="form-control" type="text">
+                            </div>
+                            <div class="form-group form-group--inline">
+                                <label>
+                                    Email<span>*</span>
+                                </label>
+                                <input class="form-control" type="email">
+                            </div>
+                            <div class="form-group form-group--inline">
+                                <label>
+                                    Điện thoại<span>*</span>
+                                </label>
+                                <input class="form-control" type="text">
+                            </div>
+                            <div class="form-group form-group--inline">
+                                <label>
+                                    Địa chỉ<span>*</span>
+                                </label>
+                                <input class="form-control" type="text">
+                            </div>
+                            <div class="form-group form-group--inline">
+                                <label>
+                                    Ngày giao hàng<span>*</span>
+                                </label>
+                                <input class="form-control" asp-for="DeliveryDate" type="date">
+                            </div>
+                            <h3 class="mt-40">THÔNG TIN BỔ SUNG</h3>
+                            <div class="form-group form-group--inline textarea">
+                                <label>Ghi chú</label>
+                                <textarea class="form-control" rows="5" placeholder="Bạn có yêu cầu gì cho đơn hàng."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                        <div class="ps-checkout__order">
+                            <header>
+                                <h3>Đơn Hàng</h3>
+                            </header>
+                            <div class="content">
+                                <table class="table ps-checkout__products">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase">Sản phẩm</th>
+                                            <th class="text-uppercase">Giá</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var item in ViewBag.Cart)
+                                        {
+                                            <tr>
+                                                <td>@item.ShoeName <span>x @item.Quantity</span></td>
+                                                @{
+                                                    double total = item.Quantity * item.Price;
+                                                }
+                                                <td>@total</td>
+                                            </tr>
+                                        }
+                                        <tr>
+                                            <td>TỔNG TIỀN </td>
+                                            <td>@ViewBag.TotalPrice</td>
+                                        </tr>
+                                    </tbody>
+
+
+                                </table>
+                            </div>
+                            <footer>
+                                <h3>PHƯƠNG THỨC THANH TOÁN</h3>
+                                <div class="form-group cheque">
+                                    <div class="ps-radio">
+                                        <input class="form-control" type="radio" id="rdo01" name="payment" checked>
+                                        <label for="rdo01">Cheque Payment</label>
+                                        <p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+                                    </div>
+                                </div>
+                                <div class="form-group paypal">
+                                    <div class="ps-radio ps-radio--inline">
+                                        <input class="form-control" type="radio" name="payment" id="rdo02">
+                                        <label for="rdo02">Paypal</label>
+                                    </div>
+                                    <ul class="ps-payment-method">
+                                        <li><a href="#"><img src="images/payment/1.png" alt=""></a></li>
+                                        <li><a href="#"><img src="images/payment/2.png" alt=""></a></li>
+                                        <li><a href="#"><img src="images/payment/3.png" alt=""></a></li>
+                                    </ul>
+                                    <button class="ps-btn ps-btn--fullwidth">Đặt hàng<i class="ps-icon-next"></i></button>
+                                </div>
+                            </footer>
+                        </div>
+                        <div class="ps-shipping">
+                            <h3>FREE SHIPPING</h3>
+                            <p>TẤT CẢ ĐƠN HÀNG ĐỀU ĐƯỢC MIỂN PHÍ VẬN CHUYỂN</p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+
